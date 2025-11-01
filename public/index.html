@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forca</title>
+    <link rel="stylesheet" href="./style.css">
+    <audio id="audio-hover" src="./assets/cowbell.mp3" preload="auto"></audio>
+    <audio class="musica-fundo" id="musica-fundo" autoplay loop>
+        <source src="./assets/cartoon-music.mp3" type="audio/mp3">
+    </audio>
+    <script>
+        const musicaFundo = document.getElementById('musica-fundo');
+
+        musicaFundo.addEventListener('click', function () {
+            musicaFundo.play();
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tela-iniciar" id="tela-iniciar">
+            <div class="container-iniciar">
+                <div class="botoes-iniciar">
+                    <div class="botao-musica">
+                        <button class="btn-musica" onclick="btnMusica()">
+                            <img src="/public/musica.png" id="img-musica" alt="Mutar musica" title="Mutar musica"
+                                class="img-musica">
+                        </button>
+                        <script>
+                            function btnMusica() {
+                                const img1 = "/public/musica.png";
+                                const img2 = "/public/mutar-musica.png";
+                                const elementoImagem = document.getElementById('img-musica');
+                                const audioElemento = document.getElementById('musica-fundo');
+
+                                if (elementoImagem.src.endsWith(img1) && audioElemento.muted === false) {
+                                    elementoImagem.src = img2;
+                                    audioElemento.muted = true;
+
+                                } else {
+                                    elementoImagem.src = img1;
+                                    audioElemento.muted = false;
+                                }
+                            }
+
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const btn = document.querySelector('.btn-musica');
+                                const audio = document.getElementById('audio-hover');
+
+                                btn.addEventListener('mouseenter', function () {
+                                    audio.currentTime = 0;
+                                    audio.play().catch(e => {
+                                        console.log("Erro ao tentar tocar o áudio:", e);
+                                    });
+                                });
+
+                                btn.addEventListener('mouseleave', function () {
+                                    audio.pause();
+                                })
+                            })
+                        </script>
+                    </div>
+                    <div class="botao-efeito">
+                        <button class="btn-efeito" onclick="btnEfeito()">
+                            <img src="/public/efeito.png" class="img-efeito" id="img-efeito" alt="mutar-efeito"
+                                title="Mutar efeito.">
+                        </button>
+                        <script>
+                            function btnEfeito() {
+                                const img1 = "/public/efeito.png";
+                                const img2 = "/public/mutar-efeito.png";
+                                const elementoImagem = document.getElementById('img-efeito');
+                                const elementoAudio = document.getElementById('audio-hover');
+
+                                if (elementoAudio.muted) {
+                                    elementoImagem.src = img1;
+                                    elementoAudio.muted = false;
+                                } else {
+                                    elementoImagem.src = img2;
+                                    elementoAudio.muted = true;
+                                }
+                            }
+
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const btn = document.querySelector('.btn-efeito');
+                                const audio = document.getElementById('audio-hover');
+
+                                btn.addEventListener('mouseenter', function () {
+                                    audio.currentTime = 0;
+                                    audio.play().catch(e => {
+                                        console.log("Erro ao tentar tocar o áudio:", e);
+                                    });
+                                });
+
+                                btn.addEventListener('mouseleave', function () {
+                                    audio.pause();
+                                })
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="titulo-tela-iniciar">
+                    <h1 class="texto-iniciar-gradiente">FOGE OU <br> ENFORCA?</h1>
+                </div>
+                <div class="botao-iniciar">
+                    <button class="btn-iniciar" id="btn-iniciar-game" onclick="ativarSom()">INICIAR</button>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const btn = document.querySelector('.btn-iniciar');
+                        const audio = document.getElementById('audio-hover');
+
+                        btn.addEventListener('mouseenter', function () {
+                            audio.currentTime = 0;
+                            audio.play().catch(e => {
+                                console.log("Erro ao tentar tocar o áudio:", e);
+                            });
+                        });
+
+                        btn.addEventListener('mouseleave', function () {
+                            audio.pause();
+                        })
+                    })
+                </script>
+                <div class="botao-sair">
+                    <button class="btn-sair">SAIR</button>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const btn = document.querySelector('.btn-sair');
+                            const audio = document.getElementById('audio-hover');
+
+                            btn.addEventListener('mouseenter', function () {
+                                audio.currentTime = 0;
+                                audio.play().catch(e => {
+                                    console.log("Erro ao tentar tocar o áudio:", e);
+                                });
+                            });
+
+                            btn.addEventListener('mouseleave', function () {
+                                audio.pause();
+                            })
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div id="nuvem-transicao"></div>
+        <div class="jogo-dificuldade" id="jogo-dificuldade">
+            <div class="dificuldades" id="dificuldades">
+                <div class="facil">
+                    <button class="btn-facil" value="facil">FÁCIL</button>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const btn = document.querySelector('.btn-facil');
+                        const audio = document.getElementById('audio-hover');
+
+                        btn.addEventListener('mouseenter', function () {
+                            audio.currentTime = 0;
+                            audio.play().catch(e => {
+                                console.log("Erro ao tentar tocar o áudio:", e);
+                            });
+                        });
+
+                        btn.addEventListener('mouseleave', function () {
+                            audio.pause();
+                        })
+                    })
+                </script>
+                <div class="normal">
+                    <button class="btn-normal" value="normal">NORMAL</button>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const btn = document.querySelector('.btn-normal');
+                        const audio = document.getElementById('audio-hover');
+
+                        btn.addEventListener('mouseenter', function () {
+                            audio.currentTime = 0;
+                            audio.play().catch(e => {
+                                console.log("Erro ao tentar tocar o áudio:", e);
+                            });
+                        });
+
+                        btn.addEventListener('mouseleave', function () {
+                            audio.pause();
+                        })
+                    })
+                </script>
+                <div class="dificil">
+                    <button class="btn-dificil" value="dificil">DIFICIL</button>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const btn = document.querySelector('.btn-dificil');
+                        const audio = document.getElementById('audio-hover');
+
+                        btn.addEventListener('mouseenter', function () {
+                            audio.currentTime = 0;
+                            audio.play().catch(e => {
+                                console.log("Erro ao tentar tocar o áudio:", e);
+                            });
+                        });
+
+                        btn.addEventListener('mouseleave', function () {
+                            audio.pause();
+                        })
+                    })
+                </script>
+            </div>
+        </div>
+        <div class="jogo-forca" id="jogo-forca">
+            <div class="jogo" id="jogo">
+                <div class="pontuacao">
+
+                </div>
+                <div class="vidas" id="vidas">
+                    <img src="./assets/vida.png">
+                </div>
+                <div class="dificuldade" id="usuarioDificuldade">
+
+                </div>
+                <div class="menu">
+
+                </div>
+                <div class="forca">
+
+                </div>
+                <div class="palavra" id="palavra">
+
+                </div>
+                <div class="letras" id="letras">
+                    <button value="A" type="button" class="btn-alfabeto" style="cursor: pointer;">A</button>
+                    <button value="B" type="button" class="btn-alfabeto" style="cursor: pointer;">B</button>
+                    <button value="C" type="button" class="btn-alfabeto" style="cursor: pointer;">C</button>
+                    <button value="D" type="button" class="btn-alfabeto" style="cursor: pointer;">D</button>
+                    <button value="E" type="button" class="btn-alfabeto" style="cursor: pointer;">E</button>
+                    <button value="F" type="button" class="btn-alfabeto" style="cursor: pointer;">F</button> <br>
+                    <button value="G" type="button" class="btn-alfabeto" style="cursor: pointer;">G</button>
+                    <button value="H" type="button" class="btn-alfabeto" style="cursor: pointer;">H</button>
+                    <button value="I" type="button" class="btn-alfabeto" style="cursor: pointer;">I</button>
+                    <button value="J" type="button" class="btn-alfabeto" style="cursor: pointer;">J</button>
+                    <button value="K" type="button" class="btn-alfabeto" style="cursor: pointer;">K</button>
+                    <button value="L" type="button" class="btn-alfabeto" style="cursor: pointer;">L</button> <br>
+                    <button value="M" type="button" class="btn-alfabeto" style="cursor: pointer;">M</button>
+                    <button value="N" type="button" class="btn-alfabeto" style="cursor: pointer;">N</button>
+                    <button value="O" type="button" class="btn-alfabeto" style="cursor: pointer;">O</button>
+                    <button value="P" type="button" class="btn-alfabeto" style="cursor: pointer;">P</button>
+                    <button value="Q" type="button" class="btn-alfabeto" style="cursor: pointer;">Q</button>
+                    <button value="R" type="button" class="btn-alfabeto" style="cursor: pointer;">R</button> <br>
+                    <button value="S" type="button" class="btn-alfabeto" style="cursor: pointer;">S</button>
+                    <button value="T" type="button" class="btn-alfabeto" style="cursor: pointer;">T</button>
+                    <button value="U" type="button" class="btn-alfabeto" style="cursor: pointer;">U</button>
+                    <button value="V" type="button" class="btn-alfabeto" style="cursor: pointer;">V</button>
+                    <button value="W" type="button" class="btn-alfabeto" style="cursor: pointer;">W</button> <br>
+                    <button value="X" type="button" class="btn-alfabeto" style="cursor: pointer;">X</button>
+                    <button value="Y" type="button" class="btn-alfabeto" style="cursor: pointer;">Y</button>
+                    <button value="Z" type="button" class="btn-alfabeto" style="cursor: pointer;">Z</button>
+                </div>
+                <script src="/src/Game.js"></script>
+            </div>
+        </div>
+        <script>
+            document.getElementById('jogo-dificuldade').style.display = 'none';
+
+            document.getElementById('btn-iniciar-game').addEventListener('click', function () {
+                const tela1 = document.getElementById('tela-iniciar');
+                const tela2 = document.getElementById('jogo-dificuldade');
+
+                tela1.style.display = 'none';
+                tela2.style.display = 'flex';
+            })
+
+            document.getElementById('dificuldades').addEventListener('click', function (event) {
+                if (event.target instanceof HTMLButtonElement && (event.target.classList.contains('btn-facil') || event.target.classList.contains('btn-normal') || event.target.classList.contains('btn-dificil'))) {
+                const tela2 = document.getElementById('jogo-dificuldade');
+                const jogo = document.getElementById('jogo-forca');
+                const dificuldade = event.target.value;
+
+                if (dificuldade === 'facil') {
+                    jogo.style.backgroundImage = 'url("./assets/facil.png")';
+                } else if (dificuldade === 'normal') {
+                    jogo.style.backgroundImage = 'url("./assets/normal.png")';
+                } else if (dificuldade === 'dificil') {
+                    jogo.style.backgroundImage = 'url("./assets/dificil.png")';
+                }
+                jogo.style.backgroundSize = 'cover';
+                jogo.style.backgroundPosition = 'center';
+                jogo.style.backgroundRepeat = 'no-repeat';
+                // Fim da lógica do fundo
+
+                tela2.style.display = 'none';
+                jogo.style.display = 'flex';
+                }
+            })
+        </script>
+    </div>
+</body>
+
+</html>

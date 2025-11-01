@@ -1,0 +1,300 @@
+@font-face {
+    font-family: 'ComicJungle';
+    src: url('./assets/ComicJungle.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.tela-iniciar {
+    height: 100vh; 
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./assets/paisagem.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.texto-iniciar-gradiente {
+    -webkit-text-stroke: 2px rgb(0, 0, 0);
+    margin: auto;
+    background-image: linear-gradient(to bottom right, rgb(247, 219, 129), rgb(209, 151, 43));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.container-iniciar {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.container-iniciar h1 {
+    font-family: 'ComicJungle';
+    font-size: 130px;
+    width: 100%;
+    display: block;
+}
+
+.container-iniciar button {
+    margin: 10px;
+    font-size: 50px;
+    font-family: 'ComicJungle';
+    background-color: transparent;
+    border: none;
+    transition: transform 0.3s ease-in-out;
+    color: ghostwhite;
+    -webkit-text-stroke: 2px black;
+}
+
+.titulo-tela-iniciar {
+    margin-bottom: 80px;
+}
+
+.container-iniciar .botao-iniciar button:hover {
+    color: brown;
+    cursor: pointer;
+    transform: scale(1.2);
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+}
+
+.container-iniciar .botao-sair button:hover {
+    color: cornflowerblue;
+    cursor: pointer;
+    transform: scale(1.2);
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+}
+
+.botao-sair {
+    margin-bottom: 50px;
+}
+
+.jogo-dificuldade {
+    background-color: bisque;
+    height: 100vh; 
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dificuldades {
+    text-align: center;
+}
+
+.dificuldades button {
+    font-family: 'ComicJungle';
+    font-size: 80px;
+    margin: 40px;
+    border-radius: 40px;
+    padding: 20px;
+    border-color: 5px black;
+    transition: transform 0.3s ease-in-out;
+}
+
+.dificuldades .btn-facil:hover {
+    background-color: rgb(66, 155, 214);
+    transform: scale(1.1);
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.dificuldades .btn-normal:hover {
+    background-color: rgb(42, 133, 80);
+    transform: scale(1.1);
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.dificuldades .btn-dificil:hover {
+    background-color: rgb(214, 66, 86);
+    transform: scale(1.1);
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.botoes-iniciar {
+    display:inline-flex;
+    position: relative;
+    cursor: pointer;
+    bottom: 130px;
+    left: 1030px;
+}
+.botao-musica .img-musica {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 40%;
+    border: 3px solid black;
+}
+
+.img-musica:hover {
+    transform: scale(1.1);
+}
+
+.botao-efeito .img-efeito {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 40%;
+    border: 3px solid black;
+}
+
+.img-efeito:hover {
+    transform: scale(1.1);
+}
+
+.jogo-forca {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; /* Distribui o espaço entre os elementos */
+    text-align: center;
+    margin: 0; /* Remove a margem para usar todo o espaço */
+}
+
+.jogo {
+    margin-bottom: 20px;
+}
+
+.dificuldade {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dificuldade p {
+    font-family: 'ComicJungle';
+    font-size: 50px;
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin: 0;
+}
+
+.palavra {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    border: 2px solid black;;
+}
+
+.palavra p {
+    font-family: 'ComicJungle';
+    font-size: clamp(2rem, 10vw, 5rem); /* Tamanho de fonte responsivo */
+    letter-spacing: 1.5vw;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    padding-left: 25px;
+}
+
+.vidas {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid black;;
+    background-color: white;
+    margin: 0;
+    padding: 10px;
+}
+
+.vidas p {
+    font-family: 'ComicJungle';
+    font-size: clamp(1.5rem, 5vw, 2.5rem);;
+    order: 1;
+    margin: 0;
+}
+
+@keyframes pulsar {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.vidas img {
+    width: 70px;
+    height: 70px;
+    animation: pulsar 0.9s ease-in-out infinite alternate;
+    order: 2;
+}
+
+.letras {
+    text-align: center;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.letras button {
+    font-family: 'ComicJungle';
+    width: clamp(35px, 8vw, 70px); /* Largura responsiva */
+    height: clamp(35px, 8vw, 70px); /* Altura responsiva */
+    font-size: clamp(1rem, 4vw, 2.5rem); /* Tamanho de fonte responsivo */
+    margin: 0.5vw; /* Margem responsiva */
+    padding: 0;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.letras button:hover {
+    transform: scale(1.1);
+    --webkit-text-stroke: 2px black;
+    color: white;
+}
+
+.letras button.facil:hover {
+    background-color: rgb(66, 155, 214);
+}
+
+.letras button.normal:hover {
+    background-color: rgb(42, 133, 80);
+}
+
+.letras button.dificil:hover {
+    background-color: rgb(214, 66, 86);
+}
+
+.letras button.desativar-hover:hover {
+    background-color: white;
+    transform: none;
+    --webkit-text-stroke: none;
+    color: #000;
+    opacity: 0.5;
+}
