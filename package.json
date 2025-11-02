@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",
+    "git-filter-repo": "^0.0.30",
     "prompt-sync": "^4.2.0"
   }
 }
