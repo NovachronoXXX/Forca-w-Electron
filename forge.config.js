@@ -3,8 +3,7 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 
 module.exports = {
   packagerConfig: {
-    // Disable ASAR during packaging to make file access at startup faster
-    // (helps diagnose startup/IO latency caused by asar reading).
+    // Desabilita o uso de ASAR para facilitar o acesso a arquivos durante o desenvolvimento e evita problemas com módulos nativos
     asar: false,
   },
   rebuildConfig: {},
@@ -31,8 +30,8 @@ module.exports = {
       name: '@electron-forge/plugin-auto-unpack-natives',
       config: {},
     },
-    // Fuses are used to enable/disable various Electron functionality
-    // at package time, before code signing the application
+    // Fuses são usados para melhorar a segurança do aplicativo Electron
+    // Esta configuração específica define várias opções de segurança para o aplicativo
     new FusesPlugin({
       version: FuseVersion.V1,
       [FuseV1Options.RunAsNode]: false,

@@ -1,13 +1,15 @@
 // Declarar confetti como função global (vem da biblioteca canvas-confetti via CDN)
 declare function confetti(options?: any): void;
 
+// Define a interface para palavras com dicas
 interface PalavrasComDica {
-  palavra: string;
-  dica: string;
+    palavra: string;
+    dica: string;
 }
 
+// Função para escolher uma palavra aleatória com base na dificuldade
 function escolherPalavra(dificuldade: string) {
-    const palavrasParaForca: Record<'facil' | 'normal' | 'dificil', PalavrasComDica[]>= {
+    const palavrasParaForca: Record<'facil' | 'normal' | 'dificil', PalavrasComDica[]> = {
         facil: [
             { palavra: "GATO", dica: "Um animal de estimação que gosta de miar." },
             { palavra: "MAO", dica: "Parte do corpo usada para segurar objetos." },
@@ -74,8 +76,8 @@ function escolherPalavra(dificuldade: string) {
             { palavra: "CATALEPSIA", dica: "Estado de imobilidade muscular temporária." },
             { palavra: "DIDÁTICO", dica: "Relacionado ao ensino ou à instrução." }
         ]
-};
-
+    };
+    // Seleciona uma palavra aleatória com base na dificuldade
     if (dificuldade === 'facil') {
         const palavras = palavrasParaForca.facil;
         const indiceAleatorio = Math.floor(Math.random() * palavras.length);
@@ -93,15 +95,16 @@ function escolherPalavra(dificuldade: string) {
 
 }
 
+// Define a interface para o resultado da função obterPalavraCriptografada
 interface Resultado {
     palavraForca: string,
     palavraCripto: string,
     dica: string
 }
 
-function obterPalavraCriptografada(dificuldade: string): Resultado  {
-    // Chamar escolherPalavra apenas uma vez para garantir que a dica
-    // corresponde exatamente à palavra selecionada.
+// Função para obter a palavra criptografada e a dica
+function obterPalavraCriptografada(dificuldade: string): Resultado {
+    // Chamar escolherPalavra apenas uma vez para garantir que a dica corresponde exatamente à palavra selecionada.
     const escolha = escolherPalavra(dificuldade)!;
     const palavra: string = escolha.palavra;
 
@@ -114,8 +117,9 @@ function obterPalavraCriptografada(dificuldade: string): Resultado  {
     };
 }
 
+// Função para iniciar o jogo
 async function iniciarJogo(dificuldade: string) {
-    // Reset previous game UI to avoid duplicating elements and event listeners
+    // Limpar conteúdo anterior
     const palavraContainer = document.getElementById('palavra');
     if (palavraContainer) palavraContainer.innerHTML = '';
     const vidasContainer = document.getElementById('vidas');
@@ -151,8 +155,8 @@ async function iniciarJogo(dificuldade: string) {
 
     //Criar campo das vidas
     let numVidas: number = 0;
-    
-    if(dificuldade === 'facil') {
+
+    if (dificuldade === 'facil') {
         numVidas = 6;
     } else if (dificuldade === 'normal') {
         numVidas = 4;
@@ -160,19 +164,20 @@ async function iniciarJogo(dificuldade: string) {
         numVidas = 3;
     }
 
+    //Criar campo das vidas no HTML
     const vidas = document.createTextNode('VIDAS: ' + numVidas);
     vidasCampo.appendChild(vidas);
     const elementoPai2 = document.getElementById('vidas');
     elementoPai2?.appendChild(vidasCampo);
 
-    //Criar campo da dificuldade
+    //Criar campo da dificuldade no HTML
     const dificuldadeCampo = document.createElement('p');
     const dificuldadeTexto = document.createTextNode('DIFICULDADE: ' + dificuldade.toUpperCase());
     dificuldadeCampo.appendChild(dificuldadeTexto);
     const elementoPaiDificuldade = document.getElementById('usuarioDificuldade');
     elementoPaiDificuldade?.appendChild(dificuldadeCampo);
 
-    //Criar campo da dica
+    //Criar campo da dica no HTML
     const dicaCampo = document.createElement('p');
     const dicaTexto = document.createTextNode('DICA: ' + palavraDica);
     dicaCampo.appendChild(dicaTexto);
@@ -188,6 +193,8 @@ async function iniciarJogo(dificuldade: string) {
         // Para o ambiente do navegador
         forcaEstagios = await fetch('../public/assets/forca.json').then(res => res.json());
     }
+
+    //Criar campo do desenho da forca no HTML
     const forcaDesenhoCampo = document.createElement('pre');
     const forcaDesenho = document.createTextNode(forcaEstagios[0]);
     forcaDesenhoCampo.appendChild(forcaDesenho);
@@ -200,22 +207,22 @@ async function iniciarJogo(dificuldade: string) {
     botoesNodeList.forEach((btn) => {
         const btnEl = btn as HTMLButtonElement;
         const novo = btnEl.cloneNode(true) as HTMLButtonElement;
-        // replace removes previous listeners and attributes
+        // Substitui o botão antigo pelo novo (sem event listeners)
         btnEl.parentNode?.replaceChild(novo, btnEl);
     });
 
-    // Re-select buttons after clone
+    // Adiciona classes de dificuldade aos botões
     const botoes = document.querySelectorAll('.btn-alfabeto');
     botoes.forEach((botao: Element) => {
         const elementoBtn = botao as HTMLElement;
 
-        // reset classes
+        // Remove classes anteriores de dificuldade e habilita o botão
         elementoBtn.classList.remove('facil', 'normal', 'dificil', 'desativar-hover');
         elementoBtn.removeAttribute('disabled');
 
-        if(dificuldade === 'facil') {
+        if (dificuldade === 'facil') {
             elementoBtn.classList.add('facil');
-        } else if (dificuldade === 'normal'){
+        } else if (dificuldade === 'normal') {
             elementoBtn.classList.add('normal');
         } else if (dificuldade === 'dificil') {
             elementoBtn.classList.add('dificil');
@@ -226,6 +233,7 @@ async function iniciarJogo(dificuldade: string) {
         botao.addEventListener('click', manipularClique as EventListener);
     });
 
+    // Função para manipular o clique nos botões de letras
     function manipularClique(event: MouseEvent): void {
         const target = event.target;
         if (target instanceof HTMLButtonElement) {
@@ -240,15 +248,24 @@ async function iniciarJogo(dificuldade: string) {
                 }
             }
 
-            if(acertou === false) {
+            if (acertou === false) {
                 numVidas--;
                 vidasCampo.textContent = 'VIDAS: ' + numVidas;
                 forcaDesenhoCampo.textContent = forcaEstagios[forcaEstagios.length - numVidas - 1];
-                if(numVidas === 0) {
-                    alert('Você perdeu!');
+                if (numVidas === 0) {
+                    const menuPerder = document.getElementById('perder-content')!;
+                    const perderOverlay = document.getElementById('perder-overlay')!;
+                    const musicaFundo = document.getElementById('musica-fundo') as HTMLAudioElement;
+                    musicaFundo.pause();
+                    musicaFundo.currentTime = 0;
+                    const musicaDerrota = document.getElementById('musica-derrota') as HTMLAudioElement;
+                    musicaDerrota.play();
+                    menuPerder.style.display = 'flex';
+                    perderOverlay.style.display = 'block';
+
                     palavraAtualArray = palavraSecretaArray
                     forcaCampo.textContent = palavraAtualArray.join('');
-                    
+                    return;
                 }
             }
             // Desabilita o botão após o clique
@@ -266,20 +283,26 @@ async function iniciarJogo(dificuldade: string) {
 
             // Verifica se o jogo terminou
         }
-            if (palavraAtual === palavraSecreta) {
-                const menuVencer = document.getElementById('vencer-content')!;
-                const vencerOverlay = document.getElementById('vencer-overlay')!;
-                menuVencer.style.display = 'flex';
-                vencerOverlay.style.display = 'block';
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
-            }
+        if (palavraAtual === palavraSecreta) {
+            const menuVencer = document.getElementById('vencer-content')!;
+            const vencerOverlay = document.getElementById('vencer-overlay')!;
+            const musicaFundo = document.getElementById('musica-fundo') as HTMLAudioElement;
+            musicaFundo.pause();
+            musicaFundo.currentTime = 0;
+            const musicaVitoria = document.getElementById('musica-vitoria') as HTMLAudioElement;
+            musicaVitoria.play();
+            menuVencer.style.display = 'flex';
+            vencerOverlay.style.display = 'block';
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
     }
 }
 
+// Configuração dos botões de dificuldade
 function setupGame() {
     const btnDificuldadeContainer = document.getElementById('dificuldades');
     if (btnDificuldadeContainer) {
@@ -292,6 +315,7 @@ function setupGame() {
     }
 }
 
+// Função para sair da aplicação
 function sairApp() {
     const btnSair = document.getElementById('btn-sair');
     btnSair?.addEventListener('click', () => {
@@ -300,6 +324,7 @@ function sairApp() {
     });
 }
 
+// Inicializa o jogo quando o conteúdo do DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     setupGame();
     sairApp();

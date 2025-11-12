@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Obtém os elementos necessários do DOM
     const musicaFundo = document.getElementById('musica-fundo');
     const audioHover = document.getElementById('audio-hover');
     const imgMusica = document.getElementById('img-musica');
@@ -11,13 +12,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const containerDificuldades = document.getElementById('dificuldades');
     const btnMenu = document.getElementById('btn-menu');
 
+    // Inicializa a tela de início
     telaDificuldade.style.display = 'none';
     btnMenu.style.display = 'none';
 
+    // Tenta tocar a música de fundo, se falhar (autoplay bloqueado), espera por um clique do usuário
     musicaFundo.play().catch(() => {
         document.body.addEventListener('click', () => musicaFundo.play(), { once: true });
     });
 
+    // Função para mutar/desmutar música de fundo
     function toggleMusica() {
         const musicaAtivaSrc = "./assets/musica.png";
         const musicaInativaSrc = "./assets/mutar-musica.png";
@@ -49,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Função para mutar/desmutar efeitos sonoros
     function toggleEfeitos() {
         const efeitoAtivoSrc = "./assets/efeito.png";
         const efeitoInativoSrc = "./assets/mutar-efeito.png";
@@ -82,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Função para mostrar a tela de seleção de dificuldade
     function mostrarTelaDificuldade() {
         telaIniciar.style.display = 'none';
         telaDificuldade.style.display = 'flex';
@@ -102,11 +108,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Adiciona o evento de clique ao botão "Opções" dentro do menu
     document.getElementById("menuOpcoes").addEventListener("click", abrirMenuOpcoes);
 
+    // Função para iniciar um novo jogo a partir do menu
     function novoJogo() {
         fecharMenu();
         mostrarTelaDificuldade();
     }
 
+    // Função para sair do menu e voltar ao início
     function menuSair() {
         fecharMenu();
         telaIniciar.style.display = 'flex';
@@ -115,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         btnMenu.style.display = 'none';
     }
 
+    // Função para voltar do menu de opções para o menu principal
     function voltarMenu() {
         const menuOpcoes = document.getElementById("menu-opcoes");
         if (menuOpcoes.style.display === "flex") {
@@ -123,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Função para iniciar o jogo com a dificuldade selecionada
     function iniciarJogoComDificuldade(event) {
         if (event.target instanceof HTMLButtonElement && event.target.closest('.dificuldades')) {
             const dificuldade = event.target.value;
@@ -146,15 +156,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Função para ajustar o volume da música
     function ajustarMusica() {
         const volumeSlider = document.getElementById("volume-musica");
         if (!volumeSlider) return;
-        
+
         // O range vai de 0 a 1 com step 0.01, não 0 a 100
         const volume = parseFloat(volumeSlider.value);
         musicaFundo.volume = volume;
         console.log("Volume da música ajustado para:", musicaFundo.volume);
-        
+
         // Se estava mutado e o usuário ajustou o slider, desmutar
         if (musicaFundo.muted && volume > 0) {
             musicaFundo.muted = false;
@@ -164,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
             musicaFundo.muted = true;
         }
 
+        // Atualiza o ícone no menu de opções
         if (musicaFundo.volume === 0 || musicaFundo.muted) {
             const imgMusicaMenu = document.getElementById('img-musica-opcoes');
             imgMusicaMenu.src = "./assets/mutar-musica.png";
@@ -174,13 +186,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Função para ajustar o volume dos efeitos
     function ajustarEfeitos() {
         const volumeSlider = document.getElementById("volume-efeito");
         if (!volumeSlider) return;
-        
+
         const volume = parseFloat(volumeSlider.value);
         audioHover.volume = volume;
-        
+
         // Se estava mutado e o usuário ajustou o slider, desmutar
         if (audioHover.muted && volume > 0) {
             audioHover.muted = false;
@@ -199,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
             imgEfeitoMenu.src = "./assets/efeito.png";
         }
     }
-    
+
     // --- Event Listeners ---
 
     // Adiciona eventos de clique aos botões de controle de som
@@ -215,6 +228,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const vencerOverlay = document.getElementById('vencer-overlay');
         if (vencerContent) vencerContent.style.display = 'none';
         if (vencerOverlay) vencerOverlay.style.display = 'none';
+        musicaFundo.play().catch(() => { });
+        mostrarTelaDificuldade();
+    });
+
+    // Adiciona evento de clique ao botão "Novo Jogo" dentro do modal de derrota
+    document.getElementById('btn-novo-jogo-perder')?.addEventListener('click', () => {
+        const perderContent = document.getElementById('perder-content');
+        const perderOverlay = document.getElementById('perder-overlay');
+        if (perderContent) perderContent.style.display = 'none';
+        if (perderOverlay) perderOverlay.style.display = 'none';
+        musicaFundo.play().catch(() => { });
         mostrarTelaDificuldade();
     });
 
@@ -258,11 +282,13 @@ function abrirMenu() {
     document.getElementById("menuOverlay").style.display = "flex";
 }
 
+// Abre a seção de opções dentro do menu
 function abrirMenuOpcoes() {
     document.getElementById("menu-opcoes").style.display = "flex";
     document.getElementById("menuOverlay").style.display = "none";
 }
 
+// Funções globais para fechar o menu (necessário para usar com onclick no HTML)
 function fecharMenu() {
     document.getElementById("menuOverlay").style.display = "none";
     document.getElementById("menu-opcoes").style.display = "none";

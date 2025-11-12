@@ -2,9 +2,9 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path'
 import fs from 'fs';
 
-// Simple startup instrumentation: append timestamped events to a startup log
-// located in the app's user data directory. This helps diagnose slow startup
-// by showing timestamps for key lifecycle events.
+// Instrumentação de inicialização simples para monitorar o uso de memória e eventos de carregamento
+// Logs são armazenados em 'startup.log' no diretório de dados do usuário da aplicação
+// Formato do log: timestamp | evento | rss=XXXKB heapUsed=XXXKB
 const startupLogPath = path.join(app.getPath('userData'), 'startup.log');
 function logStartup(event: string) {
     try {
@@ -13,13 +13,12 @@ function logStartup(event: string) {
         const entry = `${now} | ${event} | rss=${Math.round(mem.rss/1024)}KB heapUsed=${Math.round(mem.heapUsed/1024)}KB\n`;
         fs.appendFileSync(startupLogPath, entry, { encoding: 'utf8' });
     } catch (e) {
-        // Never crash app because of logging errors
-        // eslint-disable-next-line no-console
+        // Se falhar ao escrever o log, apenas ignore para evitar interrupções
         console.warn('Failed to write startup log', e);
     }
 }
 
-// Log process start as early as possible.
+// Registro do início do processo
 logStartup('process-start');
 
 let win: BrowserWindow | null = null;
@@ -35,27 +34,32 @@ async function createWindow(): Promise<void> {
         },
     });
 
-    // When the window finishes loading the file in the renderer, log it.
+    // Quando o conteúdo estiver totalmente carregado
+    // Registra o evento de carregamento completo
     win.webContents.on('did-finish-load', () => {
         logStartup('did-finish-load');
     });
 
-    // Load the UI HTML
+    // Carrega o arquivo HTML principal
     logStartup('loadFile-start');
     await win.loadFile('public/index.html');
     logStartup('loadFile-end');
 
+    // Define a janela para tela cheia
     win.setFullScreen(true)
 
+    // Limpa a referência da janela quando fechada
     win.on('closed', () => {
         win = null;
     });
 }
 
+// Manipulador IPC para sair da aplicação
 ipcMain.handle('sair-app', () => {
     app.quit();
 });
 
+// Manipulador IPC para obter a versão do aplicativo
 app.on('ready', () => {
     logStartup('app-ready');
     createWindow();
@@ -70,6 +74,7 @@ app.on('window-all-closed', () => {
     }
 });
 
+// Recria uma janela no aplicativo quando o ícone da dock é clicado e não há outras janelas abertas (macOS)
 app.on('activate', () => {
     if (win === null) {
         createWindow();

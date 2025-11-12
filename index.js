@@ -1,15 +1,15 @@
-// Try to load compiled JavaScript from `dist` (used for packaged app).
-// If it doesn't exist (development), fall back to loading TypeScript via ts-node.
+// Tenta carregar o arquivo compilado JavaScript.
+// Se não for encontrado, tenta carregar o arquivo TypeScript diretamente para desenvolvimento.
 try {
-	// Prefer compiled output
+	// Preferencialmente carrega o arquivo compilado
 	require('./dist/main');
 } catch (err) {
-	// If compiled file not found, attempt to run TypeScript directly (dev)
+	// Se falhar, tenta carregar o arquivo TypeScript
 	try {
 		require('ts-node/register');
 		require('./src/main');
 	} catch (e) {
-		// Re-throw with helpful message so packaging/runtime shows the cause
+		// Re-lança o erro original se ambos falharem
 		console.error('Failed to load application entry. Tried ./dist/main and ./src/main (via ts-node).');
 		throw e;
 	}

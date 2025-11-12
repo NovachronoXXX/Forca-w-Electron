@@ -150,9 +150,18 @@ function iniciarJogo(dificuldade) {
                     vidasCampo.textContent = 'VIDAS: ' + numVidas;
                     forcaDesenhoCampo.textContent = forcaEstagios[forcaEstagios.length - numVidas - 1];
                     if (numVidas === 0) {
-                        alert('Você perdeu!');
+                        var menuPerder = document.getElementById('perder-content');
+                        var perderOverlay = document.getElementById('perder-overlay');
+                        var musicaFundo = document.getElementById('musica-fundo');
+                        musicaFundo.pause();
+                        musicaFundo.currentTime = 0;
+                        var musicaDerrota = document.getElementById('musica-derrota');
+                        musicaDerrota.play();
+                        menuPerder.style.display = 'flex';
+                        perderOverlay.style.display = 'block';
                         palavraAtualArray = palavraSecretaArray;
                         forcaCampo.textContent = palavraAtualArray.join('');
+                        return;
                     }
                 }
                 // Desabilita o botão após o clique
@@ -171,6 +180,11 @@ function iniciarJogo(dificuldade) {
             if (palavraAtual === palavraSecreta) {
                 var menuVencer = document.getElementById('vencer-content');
                 var vencerOverlay = document.getElementById('vencer-overlay');
+                var musicaFundo = document.getElementById('musica-fundo');
+                musicaFundo.pause();
+                musicaFundo.currentTime = 0;
+                var musicaVitoria = document.getElementById('musica-vitoria');
+                musicaVitoria.play();
                 menuVencer.style.display = 'flex';
                 vencerOverlay.style.display = 'block';
                 confetti({
