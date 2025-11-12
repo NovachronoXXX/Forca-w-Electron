@@ -3,7 +3,9 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 
 module.exports = {
   packagerConfig: {
-    asar: true,
+    // Disable ASAR during packaging to make file access at startup faster
+    // (helps diagnose startup/IO latency caused by asar reading).
+    asar: false,
   },
   rebuildConfig: {},
   makers: [

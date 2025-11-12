@@ -1,300 +1,691 @@
-@font-face {
-    font-family: 'ComicJungle';
-    src: url('./assets/ComicJungle.ttf') format('truetype');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Patrick+Hand&display=swap');
+
+:root {
+    --cor-primaria: #ffc107;
+    --cor-secundaria: #ff9800;
+    --cor-texto: #5d4037;
+    --cor-fundo: #fdf8e1;
+    --cor-sombra: rgba(0, 0, 0, 0.2);
+    --cor-botao-desativado: #9e9e9e;
+    --fonte-titulo: 'Luckiest Guy', cursive;
+    --fonte-corpo: 'Patrick Hand', cursive;
 }
 
-body {
+body,
+html {
+    height: 100%;
     margin: 0;
+    font-family: var(--fonte-corpo);
+    background-color: var(--cor-fundo);
     overflow: hidden;
 }
 
-.tela-iniciar {
-    height: 100vh; 
-    width: 100vw;
+.container-fluid {
+    height: 100vh;
+    padding: 0;
+    position: relative;
+}
+
+/* --- Estilos de Telas --- */
+.tela-iniciar,
+.tela-dificuldade,
+.tela-forca {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('./assets/paisagem.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
-.texto-iniciar-gradiente {
-    -webkit-text-stroke: 2px rgb(0, 0, 0);
-    margin: auto;
-    background-image: linear-gradient(to bottom right, rgb(247, 219, 129), rgb(209, 151, 43));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+.tela-dificuldade,
+.tela-forca {
+    display: none;
+}
+
+/* --- Tela Iniciar --- */
+.tela-iniciar {
+    background: linear-gradient(135deg, #ffd54f, #ffb74d);
 }
 
 .container-iniciar {
-    display: flex;
-    flex-direction: column;
     text-align: center;
-    margin-bottom: 80px;
-}
-
-.container-iniciar h1 {
-    font-family: 'ComicJungle';
-    font-size: 130px;
-    width: 100%;
-    display: block;
-}
-
-.container-iniciar button {
-    margin: 10px;
-    font-size: 50px;
-    font-family: 'ComicJungle';
-    background-color: transparent;
-    border: none;
-    transition: transform 0.3s ease-in-out;
-    color: ghostwhite;
-    -webkit-text-stroke: 2px black;
-}
-
-.titulo-tela-iniciar {
-    margin-bottom: 80px;
-}
-
-.container-iniciar .botao-iniciar button:hover {
-    color: brown;
-    cursor: pointer;
-    transform: scale(1.2);
-    -webkit-text-stroke: 2px rgb(255, 255, 255);
-}
-
-.container-iniciar .botao-sair button:hover {
-    color: cornflowerblue;
-    cursor: pointer;
-    transform: scale(1.2);
-    -webkit-text-stroke: 2px rgb(255, 255, 255);
-}
-
-.botao-sair {
-    margin-bottom: 50px;
-}
-
-.jogo-dificuldade {
-    background-color: bisque;
-    height: 100vh; 
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dificuldades {
-    text-align: center;
-}
-
-.dificuldades button {
-    font-family: 'ComicJungle';
-    font-size: 80px;
-    margin: 40px;
-    border-radius: 40px;
-    padding: 20px;
-    border-color: 5px black;
-    transition: transform 0.3s ease-in-out;
-}
-
-.dificuldades .btn-facil:hover {
-    background-color: rgb(66, 155, 214);
-    transform: scale(1.1);
-    -webkit-text-stroke: 2px rgb(255, 255, 255);
-    cursor: pointer;
-}
-
-.dificuldades .btn-normal:hover {
-    background-color: rgb(42, 133, 80);
-    transform: scale(1.1);
-    -webkit-text-stroke: 2px rgb(255, 255, 255);
-    cursor: pointer;
-}
-
-.dificuldades .btn-dificil:hover {
-    background-color: rgb(214, 66, 86);
-    transform: scale(1.1);
-    -webkit-text-stroke: 2px rgb(255, 255, 255);
-    cursor: pointer;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px var(--cor-sombra);
+    border: 5px solid var(--cor-texto);
 }
 
 .botoes-iniciar {
-    display:inline-flex;
-    position: relative;
-    cursor: pointer;
-    bottom: 130px;
-    left: 1030px;
-}
-.botao-musica .img-musica {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background-color: white;
-    border-radius: 40%;
-    border: 3px solid black;
-}
-
-.img-musica:hover {
-    transform: scale(1.1);
-}
-
-.botao-efeito .img-efeito {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background-color: white;
-    border-radius: 40%;
-    border: 3px solid black;
-}
-
-.img-efeito:hover {
-    transform: scale(1.1);
-}
-
-.jogo-forca {
-    height: 100vh;
-    width: 100vw;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around; /* Distribui o espaço entre os elementos */
-    text-align: center;
-    margin: 0; /* Remove a margem para usar todo o espaço */
+    gap: 10px;
 }
 
-.jogo {
-    margin-bottom: 20px;
-}
-
-.dificuldade {
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.dificuldade p {
-    font-family: 'ComicJungle';
-    font-size: 50px;
-    text-align: center;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid black;
-    margin: 0;
-}
-
-.palavra {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
-    border: 2px solid black;;
-}
-
-.palavra p {
-    font-family: 'ComicJungle';
-    font-size: clamp(2rem, 10vw, 5rem); /* Tamanho de fonte responsivo */
-    letter-spacing: 1.5vw;
-    margin: 1rem 0;
+.btn-musica,
+.btn-efeito {
+    background: none;
+    border: 3px solid var(--cor-texto);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
     display: flex;
     justify-content: center;
-    padding-left: 25px;
+    align-items: center;
+    transition: transform 0.2s;
 }
 
-.vidas {
+.btn-musica:hover,
+.btn-efeito:hover {
+    transform: scale(1.1);
+}
+
+.img-musica,
+.img-efeito {
+    width: 60%;
+    height: 60%;
+}
+
+.titulo-tela-iniciar h1 {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: var(--cor-primaria);
+    -webkit-text-stroke: 2px var(--cor-texto);
+    text-shadow: 4px 4px 0 var(--cor-sombra);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.btn-iniciar,
+.btn-sair {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    padding: 10px 40px;
+    border-radius: 50px;
+    border: 4px solid var(--cor-texto);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px var(--cor-sombra);
+    margin-top: 1rem;
+}
+
+.btn-iniciar {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+}
+
+.btn-iniciar:hover {
+    background-color: var(--cor-secundaria);
+    transform: translateY(-3px);
+}
+
+.btn-sair {
+    background-color: #e0e0e0;
+    color: #616161;
+}
+
+.btn-sair:hover {
+    background-color: #bdbdbd;
+    transform: translateY(-3px);
+}
+
+/* --- Tela Dificuldade --- */
+.tela-dificuldade {
+    background: linear-gradient(135deg, #81c784, #a5d6a7);
+}
+
+.voltar-inicio {
     position: absolute;
-    left: 10px;
-    top: 10px;
-    width: auto;
-    height: 50px;
+    top: 20px;
+    left: 20px;
+}
+
+.voltar-inicio button {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 4px solid var(--cor-texto);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #d8d6d6;
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ccc' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zm1 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+    color: black;
+}
+
+.voltar-inicio button:hover {
+    background-color: #9e9e9e;
+    transform: translateY(-3px);
+}
+
+.voltar-inicio svg:hover {
+    transform: scale(1.2);
+}
+
+.voltar-inicio button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: middle;
+}
+
+.selecionar-dificuldade {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--cor-texto);
+    margin-bottom: 2rem;
+    text-shadow: 3px 3px 0 var(--cor-sombra);
+}
+
+.dificuldades {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+}
+
+.btn-facil,
+.btn-normal,
+.btn-dificil {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    padding: 15px 50px;
+    border-radius: 20px;
+    border: 5px solid var(--cor-texto);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    text-shadow: 2px 2px 0 var(--cor-texto);
+    box-shadow: 0 8px 15px var(--cor-sombra);
+}
+
+.btn-facil {
+    background-color: #66bb6a;
+}
+
+.btn-normal {
+    background-color: #ffca28;
+}
+
+.btn-dificil {
+    background-color: #ef5350;
+}
+
+.btn-facil:hover,
+.btn-normal:hover,
+.btn-dificil:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Tela do Jogo --- */
+.tela-forca {
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.jogo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.info-bar {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--cor-texto);
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.vidas,
+.dificuldade {
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 4px solid var(--cor-texto);
+    box-shadow: 0 4px 8px var(--cor-sombra);
     display: flex;
     align-items: center;
-    border-radius: 10px;
-    border: 2px solid black;;
+    /* Adiciona um espaço entre o texto e o coração */
+}
+
+.dica {
     background-color: white;
-    margin: 0;
-    padding: 10px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 4px solid var(--cor-texto);
+    box-shadow: 0 4px 8px var(--cor-sombra);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--fonte-titulo);
+    color: var(--cor-texto);
+    margin-top: 1rem;
 }
 
-.vidas p {
-    font-family: 'ComicJungle';
-    font-size: clamp(1.5rem, 5vw, 2.5rem);;
-    order: 1;
+.dica p {
     margin: 0;
 }
 
-@keyframes pulsar {
+.icon-vida {
+    width: 4vw;
+    animation: alternate-pulse 1s infinite;
+}
+
+@keyframes alternate-pulse {
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.2);
     }
+
     100% {
         transform: scale(1);
     }
 }
 
-.vidas img {
-    width: 70px;
-    height: 70px;
-    animation: pulsar 0.9s ease-in-out infinite alternate;
-    order: 2;
+.dificuldade p {
+    margin: 0;
+}
+
+.vidas p {
+    margin: 0;
+    padding-right: 1vw;
+}
+
+.forca-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.palavra {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    letter-spacing: 0.5rem;
+    color: var(--cor-texto);
+    margin-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    border: 4px dashed var(--cor-texto);
+}
+
+.forca pre {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(2rem, 8vw, 2rem);
+    letter-spacing: 0.5rem;
+    color: var(--cor-texto);
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    border: 4px dashed var(--cor-texto);
+}
+
+.palavra p {
+    margin: 0;
 }
 
 .letras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.btn-alfabeto {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    aspect-ratio: 1 / 1;
+    border-radius: 15px;
+    border: 4px solid var(--cor-texto);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: white;
+    color: var(--cor-texto);
+}
+
+.btn-alfabeto:not(:disabled):hover {
+    transform: scale(1.1);
+    background-color: var(--cor-primaria);
+}
+
+.btn-alfabeto:disabled {
+    background-color: var(--cor-botao-desativado);
+    color: #f5f5f5;
+    cursor: not-allowed;
+    border-color: #757575;
+}
+
+.desativar-hover {
+    pointer-events: none;
+}
+
+/* Estilos de fundo por dificuldade */
+.tela-forca.facil {
+    background: url('./assets/facil.png') center/cover no-repeat;
+}
+
+.tela-forca.normal {
+    background: url('./assets/normal.png') center/cover no-repeat;
+}
+
+.tela-forca.dificil {
+    background: url('./assets/dificil.png') center/cover no-repeat;
+}
+
+.menu-opcoes {
+    display: none;
+}
+
+/* 1. Contêiner do Menu (btn-menu) */
+#btn-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: none;
+}
+
+#btn-menu.visible {
+    display: block;
+}
+
+/* 2. Botão de Abrir Menu */
+.menu-btn {
+    background-color: #ffcc00;
+    /* Amarelo Vibrante */
+    border: clamp(2px, 0.5vw, 4px) solid #333;
+    /* Borda responsiva */
+    border-radius: clamp(5px, 1vw, 12px);
+    padding: clamp(8px, 1.5vw, 15px) clamp(12px, 2vw, 20px);
+    /* Padding responsivo */
+    cursor: pointer;
+    box-shadow: clamp(4px, 1vw, 8px) clamp(4px, 1vw, 8px) 0px #1a1a1a;
+    /* Sombra responsiva */
+    transition: all 0.1s ease-in-out;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    /* Tamanho de fonte responsivo */
+}
+
+.menu-btn:hover {
+    background-color: #ffdd44;
+    box-shadow: clamp(2px, 0.8vw, 4px) clamp(2px, 0.8vw, 4px) 0px #1a1a1a;
+    /* Sombra responsiva ao hover */
+    transform: translate(2px, 2px);
+    /* Movimento de clique */
+}
+
+.menu-btn svg {
+    color: #333;
+    width: clamp(24px, 4vw, 36px);
+    /* SVG responsivo */
+    height: clamp(24px, 4vw, 36px);
+}
+
+/* 3. Overlay do Menu */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fundo escuro semi-transparente */
+    display: none;
+    /* Escondido por padrão, JavaScript mostra */
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+    /* Acima de outros elementos Bootstrap */
+    backdrop-filter: blur(5px);
+    /* Efeito de desfoque */
+}
+
+.menu-opcoes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fundo escuro semi-transparente */
+    display: none;
+    /* Escondido por padrão, JavaScript mostra */
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+    /* Acima de outros elementos Bootstrap */
+    backdrop-filter: blur(5px);
+    /* Efeito de desfoque */
+}
+
+.menu-content img {
+    width: 4vh;
+    height: 4vh;
+}
+
+.menu-content input[type="range"] {
+    width: 80%;
+    margin: 15px 0;
+}
+
+.music-div {
+    display: flex;
+    gap: 1vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.effect-div {
+    display: flex;
+    gap: 1vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-opcoes.visible {
+    display: flex;
+}
+
+/* 4. Conteúdo do Menu */
+.menu-content {
+    background-color: #fff;
+    border: 6px solid #333;
+    /* Borda mais grossa para o conteúdo */
+    border-radius: 15px;
+    padding: 20px 30px;
+    width: 90%;
+    /* Responsivo com 90% de largura */
+    max-width: 450px;
+    /* Largura máxima para desktop */
     text-align: center;
+    box-shadow: 10px 10px 0px #1a1a1a;
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+    /* Animação de entrada */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Título do Menu */
+.menu-content h2 {
+    color: #333;
+    text-shadow: 2px 2px 0px #ccc;
+    /* Sombra sutil para o texto */
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* Linhas Separadoras (HR) */
+.menu-content hr {
+    border: none;
+    height: 4px;
+    background-color: #002fff;
+    margin: 15px 0;
+    border-radius: 2px;
+    /* Adicionando um leve efeito de sketch na linha */
+}
+
+/* 5. Botões de Ação no Menu */
+.menu-content button {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    background-color: transparent;
+    /* Verde de Ação */
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.1s ease-in-out;
+    font-family: var(--fonte-corpo);
+    border: none;
+}
+
+.menu-content button:hover {
+    color: #ffcc00;
+    transform: scale(1.2);
+}
+
+/* Ajuste de cor para o botão de Sair (Exemplo: Vermelho de alerta) */
+.menu-content button:last-of-type:hover {
+    color: #d9534f;
+}
+
+/* 6. Botão de Fechar (X) */
+.fechar-menu {
     position: absolute;
-    top: 75%;
+    top: 5px;
+    right: 15px;
+    color: #333;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.fechar-menu:hover {
+    color: #d9534f;
+}
+
+.vencer-content {
+    display: none;
+    font-family: var(--fonte-titulo);
+    font-size: clamp(2rem, 6vw, 3rem);
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
-.letras button {
-    font-family: 'ComicJungle';
-    width: clamp(35px, 8vw, 70px); /* Largura responsiva */
-    height: clamp(35px, 8vw, 70px); /* Altura responsiva */
-    font-size: clamp(1rem, 4vw, 2.5rem); /* Tamanho de fonte responsivo */
-    margin: 0.5vw; /* Margem responsiva */
-    padding: 0;
-    background-color: whitesmoke;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
+.vencer-content button {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    padding: 10px 40px;
+    border-radius: 50px;
+    border: 4px solid var(--cor-texto);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px var(--cor-sombra);
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
 }
 
-.letras button:hover {
-    transform: scale(1.1);
-    --webkit-text-stroke: 2px black;
-    color: white;
+/* Responsividade */
+@media (max-width: 768px) {
+    .letras {
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+        gap: 6px;
+        max-width: 600px;
+        justify-content: center;
+    }
+
+    .palavra {
+        margin-top: 2vw;
+        letter-spacing: 0.3rem;
+    }
+
+    .forca {
+        margin-top: 2vw;
+    }
+
+    .info-bar {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .vidas p {
+        margin: 0;
+        padding-right: 1vw;
+    }
+
+    .icon-vida {
+        width: 6vw;
+    }
+
 }
 
-.letras button.facil:hover {
-    background-color: rgb(66, 155, 214);
-}
+@media (max-width: 480px) {
 
-.letras button.normal:hover {
-    background-color: rgb(42, 133, 80);
-}
+    .btn-iniciar,
+    .btn-sair {
+        width: 100%;
+        padding: 15px 0;
+    }
 
-.letras button.dificil:hover {
-    background-color: rgb(214, 66, 86);
-}
+    .dificuldades {
+        width: 90%;
+    }
 
-.letras button.desativar-hover:hover {
-    background-color: white;
-    transform: none;
-    --webkit-text-stroke: none;
-    color: #000;
-    opacity: 0.5;
+    .btn-facil,
+    .btn-normal,
+    .btn-dificil {
+        width: 100%;
+    }
+
+    .letras {
+        grid-template-columns: repeat(9, minmax(36px, 1fr));
+        gap: 6px;
+        max-width: 420px;
+        justify-content: center;
+    }
 }

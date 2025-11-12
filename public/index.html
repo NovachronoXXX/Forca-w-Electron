@@ -5,232 +5,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forca</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
     <audio id="audio-hover" src="./assets/cowbell.mp3" preload="auto"></audio>
     <audio class="musica-fundo" id="musica-fundo" autoplay loop>
         <source src="./assets/cartoon-music.mp3" type="audio/mp3">
     </audio>
-    <script>
-        const musicaFundo = document.getElementById('musica-fundo');
-
-        musicaFundo.addEventListener('click', function () {
-            musicaFundo.play();
-        })
-    </script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="tela-iniciar" id="tela-iniciar">
             <div class="container-iniciar">
                 <div class="botoes-iniciar">
                     <div class="botao-musica">
-                        <button class="btn-musica" onclick="btnMusica()">
-                            <img src="/public/musica.png" id="img-musica" alt="Mutar musica" title="Mutar musica"
+                        <button class="btn-musica">
+                            <img src="./assets/musica.png" id="img-musica" alt="Mutar musica" title="Mutar musica"
                                 class="img-musica">
                         </button>
-                        <script>
-                            function btnMusica() {
-                                const img1 = "/public/musica.png";
-                                const img2 = "/public/mutar-musica.png";
-                                const elementoImagem = document.getElementById('img-musica');
-                                const audioElemento = document.getElementById('musica-fundo');
-
-                                if (elementoImagem.src.endsWith(img1) && audioElemento.muted === false) {
-                                    elementoImagem.src = img2;
-                                    audioElemento.muted = true;
-
-                                } else {
-                                    elementoImagem.src = img1;
-                                    audioElemento.muted = false;
-                                }
-                            }
-
-                            document.addEventListener('DOMContentLoaded', function () {
-                                const btn = document.querySelector('.btn-musica');
-                                const audio = document.getElementById('audio-hover');
-
-                                btn.addEventListener('mouseenter', function () {
-                                    audio.currentTime = 0;
-                                    audio.play().catch(e => {
-                                        console.log("Erro ao tentar tocar o áudio:", e);
-                                    });
-                                });
-
-                                btn.addEventListener('mouseleave', function () {
-                                    audio.pause();
-                                })
-                            })
-                        </script>
                     </div>
                     <div class="botao-efeito">
-                        <button class="btn-efeito" onclick="btnEfeito()">
-                            <img src="/public/efeito.png" class="img-efeito" id="img-efeito" alt="mutar-efeito"
+                        <button class="btn-efeito">
+                            <img src="./assets/efeito.png" class="img-efeito" id="img-efeito" alt="mutar-efeito"
                                 title="Mutar efeito.">
                         </button>
-                        <script>
-                            function btnEfeito() {
-                                const img1 = "/public/efeito.png";
-                                const img2 = "/public/mutar-efeito.png";
-                                const elementoImagem = document.getElementById('img-efeito');
-                                const elementoAudio = document.getElementById('audio-hover');
-
-                                if (elementoAudio.muted) {
-                                    elementoImagem.src = img1;
-                                    elementoAudio.muted = false;
-                                } else {
-                                    elementoImagem.src = img2;
-                                    elementoAudio.muted = true;
-                                }
-                            }
-
-                            document.addEventListener('DOMContentLoaded', function () {
-                                const btn = document.querySelector('.btn-efeito');
-                                const audio = document.getElementById('audio-hover');
-
-                                btn.addEventListener('mouseenter', function () {
-                                    audio.currentTime = 0;
-                                    audio.play().catch(e => {
-                                        console.log("Erro ao tentar tocar o áudio:", e);
-                                    });
-                                });
-
-                                btn.addEventListener('mouseleave', function () {
-                                    audio.pause();
-                                })
-                            })
-                        </script>
                     </div>
                 </div>
                 <div class="titulo-tela-iniciar">
-                    <h1 class="texto-iniciar-gradiente">FOGE OU <br> ENFORCA?</h1>
+                    <h1 class="texto-iniciar-gradiente">FOGE OU<br>ENFORCA?</h1>
                 </div>
                 <div class="botao-iniciar">
-                    <button class="btn-iniciar" id="btn-iniciar-game" onclick="ativarSom()">INICIAR</button>
+                    <button class="btn btn-lg btn-iniciar" id="btn-iniciar-game">INICIAR</button>
                 </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const btn = document.querySelector('.btn-iniciar');
-                        const audio = document.getElementById('audio-hover');
-
-                        btn.addEventListener('mouseenter', function () {
-                            audio.currentTime = 0;
-                            audio.play().catch(e => {
-                                console.log("Erro ao tentar tocar o áudio:", e);
-                            });
-                        });
-
-                        btn.addEventListener('mouseleave', function () {
-                            audio.pause();
-                        })
-                    })
-                </script>
                 <div class="botao-sair">
-                    <button class="btn-sair">SAIR</button>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const btn = document.querySelector('.btn-sair');
-                            const audio = document.getElementById('audio-hover');
-
-                            btn.addEventListener('mouseenter', function () {
-                                audio.currentTime = 0;
-                                audio.play().catch(e => {
-                                    console.log("Erro ao tentar tocar o áudio:", e);
-                                });
-                            });
-
-                            btn.addEventListener('mouseleave', function () {
-                                audio.pause();
-                            })
-                        })
-                    </script>
+                    <button class="btn btn-lg btn-sair" id="btn-sair">SAIR</button>
                 </div>
             </div>
         </div>
-        <div id="nuvem-transicao"></div>
-        <div class="jogo-dificuldade" id="jogo-dificuldade">
+        <div class="tela-dificuldade" id="jogo-dificuldade">
+            <div class="voltar-inicio" id="voltar-inicio">
+                <button class="btn-voltar" id="btn-voltar-inicio" aria-label="Voltar ao Início">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+            <h2 class="selecionar-dificuldade">SELECIONE A DIFICULDADE</h2>
             <div class="dificuldades" id="dificuldades">
                 <div class="facil">
                     <button class="btn-facil" value="facil">FÁCIL</button>
                 </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const btn = document.querySelector('.btn-facil');
-                        const audio = document.getElementById('audio-hover');
-
-                        btn.addEventListener('mouseenter', function () {
-                            audio.currentTime = 0;
-                            audio.play().catch(e => {
-                                console.log("Erro ao tentar tocar o áudio:", e);
-                            });
-                        });
-
-                        btn.addEventListener('mouseleave', function () {
-                            audio.pause();
-                        })
-                    })
-                </script>
                 <div class="normal">
                     <button class="btn-normal" value="normal">NORMAL</button>
                 </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const btn = document.querySelector('.btn-normal');
-                        const audio = document.getElementById('audio-hover');
-
-                        btn.addEventListener('mouseenter', function () {
-                            audio.currentTime = 0;
-                            audio.play().catch(e => {
-                                console.log("Erro ao tentar tocar o áudio:", e);
-                            });
-                        });
-
-                        btn.addEventListener('mouseleave', function () {
-                            audio.pause();
-                        })
-                    })
-                </script>
                 <div class="dificil">
                     <button class="btn-dificil" value="dificil">DIFICIL</button>
                 </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const btn = document.querySelector('.btn-dificil');
-                        const audio = document.getElementById('audio-hover');
-
-                        btn.addEventListener('mouseenter', function () {
-                            audio.currentTime = 0;
-                            audio.play().catch(e => {
-                                console.log("Erro ao tentar tocar o áudio:", e);
-                            });
-                        });
-
-                        btn.addEventListener('mouseleave', function () {
-                            audio.pause();
-                        })
-                    })
-                </script>
             </div>
         </div>
-        <div class="jogo-forca" id="jogo-forca">
-            <div class="jogo" id="jogo">
-                <div class="pontuacao">
+        <div class="btn-menu" id="btn-menu">
+            <button aria-label="Abrir Menu" class="menu-btn" id="abrirMenu">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+            <div id="menu-opcoes" class="menu-opcoes">
+                <div class="menu-content">
+                    <span class="fechar-menu" onclick="fecharMenu()">&times;</span>
 
+                    <h2>Opções</h2>
+                    <hr>
+                    <div class="music-div">
+                        <img src="./assets/musica.png" id="img-musica-opcoes" alt="Musica" class="img-musica-opcoes">
+                        <input type="range" id="volume-musica" min="0" max="1" step="0.01" value="1">    
+                    </div>
+                    <hr>
+                    <div class="effect-div">
+                        <img src="./assets/efeito.png" id="img-efeito-opcoes" alt="Efeito" class="img-efeito-opcoes">
+                        <input type="range" id="volume-efeito" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                    <hr>
+                    <button id="btn-voltar-opcoes">Voltar</button>
                 </div>
-                <div class="vidas" id="vidas">
-                    <img src="./assets/vida.png">
-                </div>
-                <div class="dificuldade" id="usuarioDificuldade">
+            </div>
+            <div id="menuOverlay" class="menu-overlay">
+                <div class="menu-content">
+                    <span class="fechar-menu" onclick="fecharMenu()">&times;</span>
 
+                    <h2>Menu Principal</h2>
+                    <hr>
+                    <button id="novoJogo">Novo Jogo</button>
+                    <hr>
+                    <button id="menuOpcoes">Opções</button>
+                    <hr>
+                    <button id="sairMenu">Sair</button>
                 </div>
-                <div class="menu">
-
+            </div>
+        </div>
+        <div class="tela-forca" id="jogo-forca">
+            <div class="jogo-container" id="jogo">
+                <div class="row w-100 justify-content-between align-items-center info-bar">
+                    <div class="col-auto vidas" id="vidas">
+                        <!-- Vidas serão inseridas aqui pelo JS -->
+                        <img src="./assets/vida.png" alt="Ícone de vida" class="icon-vida">
+                    </div>
+                    <div class="col-auto dificuldade" id="usuarioDificuldade">
+                        <!-- Dificuldade será inserida aqui pelo JS -->
+                    </div>
                 </div>
-                <div class="forca">
-
+                <div class="dica" id="dica-palavra">
+                    <!-- Dica da palavra aqui -->
+                </div>
+                <div class="forca-container">
+                    <div class="forca" id="forca">
+                        <!-- Imagem da forca aqui -->
+                    </div>
                 </div>
                 <div class="palavra" id="palavra">
-
+                    <!-- Palavra a ser adivinhada -->
                 </div>
                 <div class="letras" id="letras">
                     <button value="A" type="button" class="btn-alfabeto" style="cursor: pointer;">A</button>
@@ -238,66 +139,43 @@
                     <button value="C" type="button" class="btn-alfabeto" style="cursor: pointer;">C</button>
                     <button value="D" type="button" class="btn-alfabeto" style="cursor: pointer;">D</button>
                     <button value="E" type="button" class="btn-alfabeto" style="cursor: pointer;">E</button>
-                    <button value="F" type="button" class="btn-alfabeto" style="cursor: pointer;">F</button> <br>
+                    <button value="F" type="button" class="btn-alfabeto" style="cursor: pointer;">F</button>
                     <button value="G" type="button" class="btn-alfabeto" style="cursor: pointer;">G</button>
                     <button value="H" type="button" class="btn-alfabeto" style="cursor: pointer;">H</button>
                     <button value="I" type="button" class="btn-alfabeto" style="cursor: pointer;">I</button>
                     <button value="J" type="button" class="btn-alfabeto" style="cursor: pointer;">J</button>
                     <button value="K" type="button" class="btn-alfabeto" style="cursor: pointer;">K</button>
-                    <button value="L" type="button" class="btn-alfabeto" style="cursor: pointer;">L</button> <br>
+                    <button value="L" type="button" class="btn-alfabeto" style="cursor: pointer;">L</button>
                     <button value="M" type="button" class="btn-alfabeto" style="cursor: pointer;">M</button>
                     <button value="N" type="button" class="btn-alfabeto" style="cursor: pointer;">N</button>
                     <button value="O" type="button" class="btn-alfabeto" style="cursor: pointer;">O</button>
                     <button value="P" type="button" class="btn-alfabeto" style="cursor: pointer;">P</button>
                     <button value="Q" type="button" class="btn-alfabeto" style="cursor: pointer;">Q</button>
-                    <button value="R" type="button" class="btn-alfabeto" style="cursor: pointer;">R</button> <br>
+                    <button value="R" type="button" class="btn-alfabeto" style="cursor: pointer;">R</button>
                     <button value="S" type="button" class="btn-alfabeto" style="cursor: pointer;">S</button>
                     <button value="T" type="button" class="btn-alfabeto" style="cursor: pointer;">T</button>
                     <button value="U" type="button" class="btn-alfabeto" style="cursor: pointer;">U</button>
                     <button value="V" type="button" class="btn-alfabeto" style="cursor: pointer;">V</button>
-                    <button value="W" type="button" class="btn-alfabeto" style="cursor: pointer;">W</button> <br>
+                    <button value="W" type="button" class="btn-alfabeto" style="cursor: pointer;">W</button>
                     <button value="X" type="button" class="btn-alfabeto" style="cursor: pointer;">X</button>
                     <button value="Y" type="button" class="btn-alfabeto" style="cursor: pointer;">Y</button>
                     <button value="Z" type="button" class="btn-alfabeto" style="cursor: pointer;">Z</button>
                 </div>
-                <script src="/src/Game.js"></script>
+                <div class="vencer-content" id="vencer-content" style="display: none;">
+                    <h2>Parabéns, você venceu!</h2>
+                    <button class="novoJogo" id="novoJogo">Novo Jogo</button>
+                    <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
+                </div>
             </div>
         </div>
-        <script>
-            document.getElementById('jogo-dificuldade').style.display = 'none';
-
-            document.getElementById('btn-iniciar-game').addEventListener('click', function () {
-                const tela1 = document.getElementById('tela-iniciar');
-                const tela2 = document.getElementById('jogo-dificuldade');
-
-                tela1.style.display = 'none';
-                tela2.style.display = 'flex';
-            })
-
-            document.getElementById('dificuldades').addEventListener('click', function (event) {
-                if (event.target instanceof HTMLButtonElement && (event.target.classList.contains('btn-facil') || event.target.classList.contains('btn-normal') || event.target.classList.contains('btn-dificil'))) {
-                const tela2 = document.getElementById('jogo-dificuldade');
-                const jogo = document.getElementById('jogo-forca');
-                const dificuldade = event.target.value;
-
-                if (dificuldade === 'facil') {
-                    jogo.style.backgroundImage = 'url("./assets/facil.png")';
-                } else if (dificuldade === 'normal') {
-                    jogo.style.backgroundImage = 'url("./assets/normal.png")';
-                } else if (dificuldade === 'dificil') {
-                    jogo.style.backgroundImage = 'url("./assets/dificil.png")';
-                }
-                jogo.style.backgroundSize = 'cover';
-                jogo.style.backgroundPosition = 'center';
-                jogo.style.backgroundRepeat = 'no-repeat';
-                // Fim da lógica do fundo
-
-                tela2.style.display = 'none';
-                jogo.style.display = 'flex';
-                }
-            })
-        </script>
     </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="./ui.js" defer></script>
+    <script src="../src/Game.js" defer></script>
 </body>
 
 </html>
