@@ -268,7 +268,9 @@ async function iniciarJogo(dificuldade: string) {
         }
             if (palavraAtual === palavraSecreta) {
                 const menuVencer = document.getElementById('vencer-content')!;
+                const vencerOverlay = document.getElementById('vencer-overlay')!;
                 menuVencer.style.display = 'flex';
+                vencerOverlay.style.display = 'block';
                 confetti({
                     particleCount: 100,
                     spread: 70,

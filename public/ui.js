@@ -209,6 +209,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Adiciona evento de clique ao botão "INICIAR"
     btnIniciar?.addEventListener('click', mostrarTelaDificuldade);
 
+    // Adiciona evento de clique ao botão "Novo Jogo" dentro do modal de vitória
+    document.getElementById('btn-novo-jogo-vencer')?.addEventListener('click', () => {
+        const vencerContent = document.getElementById('vencer-content');
+        const vencerOverlay = document.getElementById('vencer-overlay');
+        if (vencerContent) vencerContent.style.display = 'none';
+        if (vencerOverlay) vencerOverlay.style.display = 'none';
+        mostrarTelaDificuldade();
+    });
+
     //Adiciona evento de clique aos botões no menu
     document.getElementById('novoJogo')?.addEventListener('click', novoJogo);
     document.getElementById('sairMenu')?.addEventListener('click', menuSair);

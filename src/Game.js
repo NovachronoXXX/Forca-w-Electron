@@ -170,7 +170,9 @@ function iniciarJogo(dificuldade) {
             }
             if (palavraAtual === palavraSecreta) {
                 var menuVencer = document.getElementById('vencer-content');
+                var vencerOverlay = document.getElementById('vencer-overlay');
                 menuVencer.style.display = 'flex';
+                vencerOverlay.style.display = 'block';
                 confetti({
                     particleCount: 100,
                     spread: 70,
