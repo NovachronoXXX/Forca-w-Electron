@@ -1,5 +1,12 @@
 # 🔨 Forca usando framework Electron
 
+<div align="center">
+  <img src="https://img.shields.io/badge/Status-Concluído-brightgreen?style=flat" alt="Status: Concluído">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" alt="Linguagem: TypeScript">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white" alt="Runtime: Node.js">
+  <img src="https://img.shields.io/badge/Electron-47848F?style=flat&logo=electron&logoColor=white" alt="Framework: Electron">
+</div>
+
 ## 💻 Sobre o Projeto
 
 O **Forca-w-Electron** é uma implementação moderna e nativa do clássico jogo da Forca.
