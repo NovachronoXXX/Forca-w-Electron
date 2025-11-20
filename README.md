@@ -6,8 +6,11 @@ O **Forca-w-Electron** é uma implementação moderna e nativa do clássico jogo
 
 Este projeto utiliza o framework **Electron** para empacotar uma aplicação **Node.js** e **TypeScript (TS)**, transformando-a em um aplicativo de desktop **multiplataforma** (Windows, macOS e Linux) com uma interface gráfica rica. O objetivo foi demonstrar a capacidade de utilizar tecnologias web modernas para criar softwares de mesa (desktop).
 
-> ℹ️ **Nota:** Você pode adicionar uma imagem ou GIF do jogo aqui, usando a sintaxe: `![Captura de Tela do Jogo](caminho/para/sua/imagem.png)`
-
+![Captura de Tela do Jogo](imgsPreview/printJogoForca.jpg)
+![Captura de Tela do Jogo](imgsPreview/printJogoForca2.jpg)
+![Captura de Tela do Jogo](imgsPreview/printJogoForca3.jpg)
+![Captura de Tela do Jogo](imgsPreview/printJogoForca4.jpg)
+![Captura de Tela do Jogo](imgsPreview/printJogoForca5.jpg)
 ---
 
 ## ✨ Funcionalidades
@@ -62,11 +65,6 @@ npm install
 # ForcaTS — Instruções rápidas
 
 Este README rápido explica como construir, empacotar e executar o instalador/executável gerado pelo Electron Forge para este projeto (Windows).
-
-## Requisitos
-- Node.js (versão compatível com as dependências do projeto)
-- npm
-- Windows (PowerShell)
 
 ## Scripts úteis (em `package.json`)
 - `npm start` — roda a app em modo desenvolvimento (Electron + ts-node fallback)
