@@ -6,11 +6,14 @@ O **Forca-w-Electron** é uma implementação moderna e nativa do clássico jogo
 
 Este projeto utiliza o framework **Electron** para empacotar uma aplicação **Node.js** e **TypeScript (TS)**, transformando-a em um aplicativo de desktop **multiplataforma** (Windows, macOS e Linux) com uma interface gráfica rica. O objetivo foi demonstrar a capacidade de utilizar tecnologias web modernas para criar softwares de mesa (desktop).
 
-![Captura de Tela do Jogo](imgsPreview/printJogoForca.jpg)
-![Captura de Tela do Jogo](imgsPreview/printJogoForca2.jpg)
-![Captura de Tela do Jogo](imgsPreview/printJogoForca3.jpg)
-![Captura de Tela do Jogo](imgsPreview/printJogoForca4.jpg)
-![Captura de Tela do Jogo](imgsPreview/printJogoForca5.jpg)
+<div align="center">
+<img src="imgsPreview/printJogoForca.jpg" alt="Captura de tela do jogo" width="300px">
+<img src="imgsPreview/printJogoForca2.jpg" alt="Captura de tela do jogo" width="300px">
+<img src="imgsPreview/printJogoForca3.jpg" alt="Captura de tela do jogo" width="300px">
+<img src="imgsPreview/printJogoForca4.jpg" alt="Captura de tela do jogo" width="300px">
+<img src="imgsPreview/printJogoForca5.jpg" alt="Captura de tela do jogo" width="300px">
+</div>
+
 ---
 
 ## ✨ Funcionalidades
@@ -22,6 +25,7 @@ O jogo oferece uma experiência de usuário intuitiva e as seguintes funcionalid
 * **Múltiplas Palavras:** Sistema de seleção de palavras aleatórias de um banco de dados interno (ou lista estática).
 * **Feedback Visual:** Atualização visual da forca e das letras acertadas/erradas a cada tentativa.
 * **Compilado e Empacotado:** Pronto para ser distribuído como um instalador/executável standalone.
+
 ---
 
 ## 🛠️ Tecnologias Utilizadas
@@ -82,7 +86,7 @@ npm run premake; npm run make
 O Electron Forge grava os artefatos em `out/make` do seu projeto. No build que foi gerado neste repositório (Squirrel/Windows), o instalador está em:
 
 ```
-C:\dev\ForcaTS\out\make\squirrel.windows\x64\ForcaTS-1.0.0 Setup.exe
+\..\ForcaTS\out\make\squirrel.windows\x64\ForcaTS-1.0.0 Setup.exe
 ```
 
 Observações:
@@ -95,7 +99,7 @@ Observações:
 
 Você pode abrir o instalador via PowerShell:
 ```powershell
-Start-Process 'C:\dev\ForcaTS\out\make\squirrel.windows\x64\ForcaTS-1.0.0 Setup.exe'
+Start-Process '\..\ForcaTS\out\make\squirrel.windows\x64\ForcaTS-1.0.0 Setup.exe'
 ```
 Ou executar diretamente o executável instalado:
 ```powershell
