@@ -55,6 +55,7 @@ cd Forca-w-Electron
 
 # Instale as dependências
 npm install
+```
 
 ---
 
