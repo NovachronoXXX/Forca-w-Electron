@@ -1,4 +1,4 @@
-# 🔨 Forca-w-Electron: Jogo da Forca Desktop
+# 🔨 Forca usando framework Electron
 
 ## 💻 Sobre o Projeto
 
@@ -59,7 +59,7 @@ npm install
 
 ---
 
-### ForcaTS — Instruções rápidas
+# ForcaTS — Instruções rápidas
 
 Este README rápido explica como construir, empacotar e executar o instalador/executável gerado pelo Electron Forge para este projeto (Windows).
 
