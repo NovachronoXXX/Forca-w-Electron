@@ -56,7 +56,9 @@ cd Forca-w-Electron
 # Instale as dependências
 npm install
 
-### ForcaTS — Instruções rápidas
+---
+
+## ForcaTS — Instruções rápidas
 
 Este README rápido explica como construir, empacotar e executar o instalador/executável gerado pelo Electron Forge para este projeto (Windows).
 
